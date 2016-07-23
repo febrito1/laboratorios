@@ -9,34 +9,31 @@ public class Album {
 	private boolean isFavorito;
 	private int duracaoTotal;
 	private ArrayList <Musica> musicas;
+	private boolean favorito;
 	
 	
 	
-	public Album(String tituloAlbum, String artista, int anoLancamento) throws Exception{
-		this(tituloAlbum,artista,anoLancamento, false);
+	public Album(String artista,String tituloAlbum,int anoLancamento, boolean favorito) throws Exception{
+		this(artista, tituloAlbum, anoLancamento);
 		musicas = new ArrayList <Musica> ();
 	}
 	
 	
-	public Album(String tituloAlbum, String artista, int anoLancamento, boolean favorito) throws Exception {
+	public Album(String artista,  String tituloAlbum, int anoLancamento) throws Exception{
 		
-		if ((tituloAlbum == null) || tituloAlbum.trim().isEmpty()){
-			throw new Exception("Titulo do album não pode ser nulo ou vazio.");
-		}
-		
-		if (artista == null || tituloAlbum.trim().isEmpty()){
+		if (artista == null || artista.trim().isEmpty()){
 			throw new Exception("Artista do album nao pode ser nulo ou vazio.");
 		}
-		
+	
 		if (anoLancamento <= 1900){
 			throw new Exception("Ano de lancamento nao pode ser igual ou inferior a 1900.");
 		}
 		
 		musicas = new ArrayList <Musica> ();
-		this.tituloAlbum = tituloAlbum;
 		this.artista = artista;
+		this.tituloAlbum = tituloAlbum;
 		this.anoLancamento = anoLancamento;
-		favorito = isFavorito;
+		this.favorito = false;
 		
 	}
 
@@ -45,7 +42,7 @@ public class Album {
 	}
 
 	public String getArtista() {
-			return artista;
+		return artista;
 	}
 	
 	
@@ -138,25 +135,19 @@ public class Album {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
+		
+		if (obj instanceof Album){
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		Album other = (Album)obj;
+		
+		if (!this.getTitulo().equals(other.getArtista())){
 			return false;
-		Album other = (Album) obj;
-		if (anoLancamento != other.anoLancamento)
+		
+		} else if (!this.getArtista().equals(other.getArtista())){
 			return false;
-		if (artista == null) {
-			if (other.artista != null)
-				return false;
-		} else if (!artista.equals(other.artista))
-			return false;
-		if (tituloAlbum == null) {
-			if (other.tituloAlbum != null)
-				return false;
-		} else if (!tituloAlbum.equals(other.tituloAlbum))
-			return false;
+		}
+		
 		return true;
 	}
 

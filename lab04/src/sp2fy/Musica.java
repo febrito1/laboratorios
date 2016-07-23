@@ -2,15 +2,15 @@ package sp2fy;
 
 public class Musica {
 
-	private String Titulo;
+	private String titulo;
 	private int duracao;
 	private String genero;
 	
 	
 	
-	public Musica(String nome, int duracao, String genero) throws Exception{
+	public Musica(String titulo, int duracao, String genero) throws Exception{
 		/* titulo inválido*/
-		if (nome == null || nome.equals("")){
+		if (titulo == null || titulo.trim().isEmpty()){
 			throw new Exception("Titulo da musica nao pode ser nulo ou vazio."); 
 		}
 		/*duração inválida*/
@@ -25,7 +25,7 @@ public class Musica {
 		
 		
 		
-		this.Titulo = nome;
+		this.titulo = titulo;
 		this.duracao = duracao;
 		this.genero = genero;
 	
@@ -35,12 +35,12 @@ public class Musica {
 
 	
 	public String getTitulo() {
-		return Titulo;
+		return titulo;
 	}
 
 
-	public void setTitulo(String nome) {
-		this.Titulo = nome;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 
@@ -67,7 +67,7 @@ public class Musica {
 	
 	@Override
 	public String toString() {
-		return "Musica nome: " + Titulo + ", duracao = " + duracao + ", genero = " + genero + ".";
+		return "Musica nome: " + titulo + ", duracao = " + duracao + ", genero = " + genero + ".";
 	}
 
 
@@ -75,7 +75,7 @@ public class Musica {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Titulo == null) ? 0 : Titulo.hashCode());
+		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
 		result = prime * result + duracao;
 		result = prime * result + ((genero == null) ? 0 : genero.hashCode());
 		return result;
@@ -91,10 +91,10 @@ public class Musica {
 		if (getClass() != obj.getClass())
 			return false;
 		Musica other = (Musica) obj;
-		if (Titulo == null) {
-			if (other.Titulo != null)
+		if (titulo == null) {
+			if (other.titulo != null)
 				return false;
-		} else if (!Titulo.equals(other.Titulo))
+		} else if (!titulo.equals(other.titulo))
 			return false;
 		if (duracao != other.duracao)
 			return false;
